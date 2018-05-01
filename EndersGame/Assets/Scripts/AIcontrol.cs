@@ -12,12 +12,11 @@ public class AIcontrol : MonoBehaviour
 	public GameObject warship; //warship model
 	public GameObject spaceship; //Spaceship game object
 	public GameObject emspwn2; //enemyspawner 2
-	public CameraControl camCon; //Camera control script.. use to set which camera to activate and cameras target setup
+	public CameraControl camCon; 
 	//Place all ships in a list
 	private List<GameObject> FVspawn = new List<GameObject> ();
 	private List<GameObject> enemies = new List<GameObject> ();
 	private List<GameObject> enemies2 = new List<GameObject> ();
-	//List of camerabehavior to set up cameras target object
 	private List<CameraBehaviour> camsBehavior = new List<CameraBehaviour>();
 
 	void Start ()
@@ -28,7 +27,7 @@ public class AIcontrol : MonoBehaviour
 		enemies.Clear ();
 		enemies2.Clear ();
 		camsBehavior.Clear ();
-		//add all FUX1 plane to list
+		//add all fvx1 plane to list
 		for (int i = 0; i < Fspwn.transform.childCount; i++) {
 			FVspawn.Add (Fspwn.transform.GetChild (i).gameObject);
 		}
@@ -48,18 +47,8 @@ public class AIcontrol : MonoBehaviour
 			sk.enabled = enabled;
 			//enemies2[i].GetComponent<FireBullets>().Startfiring();
 		}
-		//set camera behaviour list
-		//for (int i = 0; i < camCon.cameras.Count; i++) {
-		//	camsBehavior.Add (camCon.cameras[i].GetComponent<CameraBehaviour>());
-		//}
-		//set cameras target object
-		//camsBehavior[0].target = FVspawn[0];
-		//camsBehavior[1].target = enemies[0];
-		//camsBehavior [4].target = spaceship;
-		//camsBehavior[4].offset = camsBehavior[4].transform.position - spaceship.transform.position;
-		//camsBehavior [6].target = spaceship; 
-		//camsBehavior [0].option = 2; //make camera 1 lookAt FUX1 plane
-		// Deactive other objects that are not needed yet
+
+		// Deactive some unneeded objcets 
 		fsSpwn.SetActive(false);
 		emspwn2.SetActive(false);
 		spaceship.SetActive (false);
@@ -73,7 +62,7 @@ public class AIcontrol : MonoBehaviour
 		StartCoroutine (Pathfollow ());
 
 		for (int i = 0; i < FVspawn.Count; i++) {
-			for (int j = 0; j < FVspawn [i].transform.Find ("Bombs").transform.childCount; j++) { //fire first 2 missilbe of each FUX1
+			for (int j = 0; j < FVspawn [i].transform.Find ("Bombs").transform.childCount; j++) { //fire first 2 missilbe of each fvx1
 				FVspawn [i].transform.Find ("Bombs").GetChild (j).gameObject.GetComponent<Seek> ().enabled = enabled;
 				yield return new WaitForSeconds (0.3f);
 				FVspawn [i].transform.Find ("Bombs").GetChild (j).gameObject.GetComponent<Rigidbody> ().isKinematic = false;
@@ -94,7 +83,6 @@ public class AIcontrol : MonoBehaviour
 		camsBehavior [1].option = 1;
 
 		//for loop to set FVspawn and enemies
-		//must have both equal numbers of ship count
 		for(int i = 0; i < FVspawn.Count; i++)
 		{
 			if (FVspawn[i].name != "follower") {
@@ -104,13 +92,11 @@ public class AIcontrol : MonoBehaviour
 				//disable previous behaviour of follower
 				FVspawn[i].GetComponent<OffsetPursue> ().enabled = !enabled;
 			}
-			//enable follow path script and obstacle avoidance for FUX1 planes
+			//enable follow path script and obstacle avoidance for fvx1 planes
 			FVspawn[i].GetComponent<FollowPath> ().enabled = enabled;
 			FVspawn[i].GetComponent<ObstacleAvoidance> ().enabled = enabled;
 			FVspawn[i].GetComponent<Boid> ().maxSpeed = 25;
-			//disable previous behaviour of enemies
-			//		es.GetComponent<Wander>().enabled = !enabled;
-			//make seek script of enemies to follow each one of FUX1 planes
+			//make seek script of enemies to follow each one of fvx1 planes
 			Seek sk = enemies[i].GetComponent<Seek>();
 			sk.targetGameObject = FVspawn[i];
 			sk.enabled = enabled;

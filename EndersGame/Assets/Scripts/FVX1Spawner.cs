@@ -10,9 +10,8 @@ public class FVX1Spawner : MonoBehaviour
 	public float followers = 1;
 	public GameObject ssprefab;
 	public GameObject warship;
-	public GameObject expPrefab; //explosion prefab place on boid of missiles
+	public GameObject expPrefab; 
 	private Vector3 mshipsize;
-	//Could create the list here and use at the AI script aswell
 
 	private void Awake ()
 	{
@@ -27,9 +26,6 @@ public class FVX1Spawner : MonoBehaviour
 		leader.transform.position = this.transform.TransformPoint (new Vector3(0,-50,0));
 		leader.transform.rotation = this.transform.rotation;
 
-		//add components path,pathfollow,obsavoidance,
-		//Path path = leader.AddComponent<Path> ();
-		//path.isRandom = false;
 		FollowPath fpath = leader.AddComponent<FollowPath> ();
 		fpath.path = GameObject.Find("Spath").GetComponent<Path>();
 		fpath.enabled = fpath.enabled;
@@ -40,7 +36,7 @@ public class FVX1Spawner : MonoBehaviour
 	}
 
 
-	Vector3 RandomTarget () //missile launch random position of warship
+	Vector3 RandomTarget () 
 	{
 		return new Vector3 (warship.transform.position.x,
 			warship.transform.position.y,

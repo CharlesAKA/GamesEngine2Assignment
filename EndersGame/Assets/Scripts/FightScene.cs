@@ -48,18 +48,6 @@ public class FightScene : MonoBehaviour
 		//Add boid and seek to the  bombs(missiles)
 
 		fvx1ships.Add (leader);
-
-		//Creates the fvx1 fighter plane that will get shot by
-		//leader = GameObject.Instantiate<GameObject> (fvx1prefab);
-		//leader.transform.parent = this.transform;
-		//leader.transform.position = this.transform.GetChild (0).position; //position at the start of the apath
-		//leader.transform.rotation = this.transform.GetChild (0).rotation; 
-		//fpath = leader.AddComponent<FollowPath> ();
-		//fpath.path = paths [0]; //follows the apath
-		//fpath.enabled = !fpath.enabled;
-		//fvx1ships.Add (leader);
-
-		//StartCoroutine (Enemykill ());
 	}
 
 

@@ -21,12 +21,6 @@ public class OffsetPursue : SteeringBehaviour {
 
     void Start () {
         offset = transform.position - leader.transform.position;
-//		Debug.Log (transform.position);
-//		Debug.Log (leader.transform.position);
-//		Debug.Log (offset);
-       // offset = Quaternion.Inverse(leader.transform.rotation) * offset;
-//		Debug.Log (offset);
-//		Debug.Log (Quaternion.Inverse(leader.transform.rotation));
     }
 
     // Update is called once per frame

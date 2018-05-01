@@ -9,8 +9,6 @@ public class Path : MonoBehaviour
 	public GameObject warship = null;
 	public int next = 0;
 	public bool looped = true;
-	//public int count;
-	//public Vector3 range;
 	public bool isRandom = true;
 
 	public void OnDrawGizmos ()
@@ -62,11 +60,6 @@ public class Path : MonoBehaviour
 			for (int i = 0; i < count; i++) {
 				waypoints.Add (transform.GetChild (i).position);
 			}
-//			waypoints.Add (new Vector3 (300, 50, 0));
-//			waypoints.Add (new Vector3 (100, 50, 0));
-//			waypoints.Add (new Vector3 (0, 50, 0));
-//			waypoints.Add (new Vector3 (-80, 50, 0));
-//			waypoints.Add (new Vector3 (-100, 75, 0));
 		}
 	}
 
