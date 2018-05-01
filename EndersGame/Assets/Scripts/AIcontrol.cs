@@ -22,7 +22,7 @@ public class AIcontrol : MonoBehaviour
 
 	void Start ()
 	{
-		spaceship = GameObject.Find ("Spaceship");
+		spaceship = GameObject.Find ("HeavyBattleship(Clone)");
 		//clear all list
 		FVspawn.Clear ();
 		enemies.Clear ();
@@ -46,21 +46,20 @@ public class AIcontrol : MonoBehaviour
 			Seek sk = enemies2[i].GetComponent<Seek> ();
 			sk.targetGameObject = spaceship;
 			sk.enabled = enabled;
-			enemies2[i].GetComponent<FireBullets>().Startfiring();
+			//enemies2[i].GetComponent<FireBullets>().Startfiring();
 		}
 		//set camera behaviour list
-		for (int i = 0; i < camCon.cameras.Count; i++) {
-			camsBehavior.Add (camCon.cameras[i].GetComponent<CameraBehaviour>());
-		}
+		//for (int i = 0; i < camCon.cameras.Count; i++) {
+		//	camsBehavior.Add (camCon.cameras[i].GetComponent<CameraBehaviour>());
+		//}
 		//set cameras target object
-		camsBehavior[0].target = FVspawn[0];
-		camsBehavior[1].target = enemies[0];
-		camsBehavior [4].target = spaceship;
-		camsBehavior[4].offset = camsBehavior[4].transform.position - spaceship.transform.position;
-		camsBehavior [6].target = spaceship; 
-		camsBehavior [0].option = 2; //make camera 1 lookAt FUX1 plane
+		//camsBehavior[0].target = FVspawn[0];
+		//camsBehavior[1].target = enemies[0];
+		//camsBehavior [4].target = spaceship;
+		//camsBehavior[4].offset = camsBehavior[4].transform.position - spaceship.transform.position;
+		//camsBehavior [6].target = spaceship; 
+		//camsBehavior [0].option = 2; //make camera 1 lookAt FUX1 plane
 		// Deactive other objects that are not needed yet
-		warship.transform.GetChild(0).gameObject.SetActive(false);
 		fsSpwn.SetActive(false);
 		emspwn2.SetActive(false);
 		spaceship.SetActive (false);

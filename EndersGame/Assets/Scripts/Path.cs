@@ -44,6 +44,7 @@ public class Path : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		warship = GameObject.Find ("Warship");
 		waypoints.Clear ();
 		if (isRandom) {
 			int count = 10;

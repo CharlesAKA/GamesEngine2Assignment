@@ -6,7 +6,7 @@ public class FVX1Spawner : MonoBehaviour
 {
 	public float leaders = 3;
 	public float gapL = 10;
-	public float gap = 5;
+	public float gap = 10;
 	public float followers = 1;
 	public GameObject prefab;
 	public GameObject ssprefab;

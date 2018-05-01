@@ -5,7 +5,7 @@ using UnityEngine;
 public class FightScene : MonoBehaviour
 {
 
-	public GameObject fsSpwn;
+	//public GameObject fsSpwn;
 	public GameObject fvx1prefab;
 	public GameObject enemyprefab;
 	public GameObject expPrefab;
@@ -26,10 +26,10 @@ public class FightScene : MonoBehaviour
 		//Creates the enemy to get shot by
 		GameObject leader = GameObject.Instantiate<GameObject> (enemyprefab);
 		leader.transform.parent = this.transform;
-		leader.transform.position = this.transform.GetChild (1).position; //position at the start of the epath
+		leader.transform.position = this.transform.GetChild (1).position; //position at the start of the path
 		leader.transform.rotation = this.transform.GetChild (1).rotation; 
 		FollowPath fpath = leader.AddComponent<FollowPath> ();
-		fpath.path = paths [1]; //follows the epath
+		fpath.path = paths [0]; //follows the path
 		fpath.enabled = fpath.enabled;
 		eships.Add (leader);
 
@@ -46,15 +46,7 @@ public class FightScene : MonoBehaviour
 		leader.transform.position = this.transform.position;
 		leader.transform.rotation = this.transform.rotation;
 		//Add boid and seek to the  bombs(missiles)
-		int count = leader.transform.Find ("Bombs").gameObject.transform.childCount;
-		for (int i = 0; i < count; i++) {
-			Boid b = leader.transform.Find ("Bombs").GetChild (i).gameObject.AddComponent<Boid> ();
-			b.maxSpeed = 45f;
-			b.explosionPrefab = expPrefab;
-			Pursue sb = leader.transform.Find ("Bombs").GetChild (i).gameObject.AddComponent<Pursue> ();
-			sb.target = eships [0].GetComponent<Boid> ();
-			sb.enabled = !sb.enabled;
-		}
+
 		fvx1ships.Add (leader);
 
 		//Creates the fvx1 fighter plane that will get shot by
@@ -85,15 +77,15 @@ public class FightScene : MonoBehaviour
 	public IEnumerator Av8Kill ()//first plane shoot enemy
 	{
 		yield return new WaitForSeconds (1);
-		fvx1ships [1].GetComponent<FollowPath> ().enabled = enabled;
+		fvx1ships [0].GetComponent<FollowPath> ().enabled = enabled;
 		yield return new WaitForSeconds (1.7f);
 		eships [1].GetComponent<FireBullets> ().Fire();
 		yield break;
 	}
 
 	void Update(){
-		if (fvx1ships [1] != null) {
-			eships [1].transform.LookAt (fvx1ships [1].transform);
+		if (fvx1ships [0] != null) {
+			eships [1].transform.LookAt (fvx1ships [0].transform);
 		}
 	}
 }
