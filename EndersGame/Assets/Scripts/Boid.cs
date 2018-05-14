@@ -115,26 +115,12 @@ public class Boid : MonoBehaviour
 	void OnCollisionEnter (Collision other)
 	{
 
-		if (other.gameObject.CompareTag("EnemyBullet") && this.gameObject.CompareTag ("Av8s")) {
-			Debug.Log ("hit av8");
+		if (other.gameObject.CompareTag("EnemyBullet") && this.gameObject.CompareTag ("FVspawn")) {
+			Debug.Log ("hit");
 			ExplodeMyParts ();
 			//add explosion fx
 			GameObject go = Instantiate(explosionPrefab,this.gameObject.transform.position,Quaternion.identity);
 			go.transform.localScale = new Vector3 (1, 1, 1);
-			Destroy (go, 3);
-		}
-		if (this.gameObject.CompareTag("Missiles") && other.gameObject.CompareTag("Mothership")) {
-			Debug.Log ("explode");
-			//add explosion fx
-			GameObject go = Instantiate(explosionPrefab,this.gameObject.transform.position,Quaternion.identity);
-			Destroy(this.gameObject);
-			Destroy (go, 3);
-		}
-		if (this.gameObject.CompareTag("Missiles") && other.gameObject.CompareTag("Enemy")) {
-			Debug.Log ("hit enemy");
-			//add explosion fx
-			GameObject go = Instantiate(explosionPrefab,this.gameObject.transform.position,Quaternion.identity);
-			Destroy(this.gameObject);
 			Destroy (go, 3);
 		}
 	}

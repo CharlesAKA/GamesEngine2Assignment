@@ -5,7 +5,6 @@ using UnityEngine;
 public class FightScene : MonoBehaviour
 {
 
-	//public GameObject fsSpwn;
 	public GameObject fvx1prefab;
 	public GameObject enemyprefab;
 	public GameObject expPrefab;
@@ -45,7 +44,6 @@ public class FightScene : MonoBehaviour
 		leader.transform.parent = this.transform;
 		leader.transform.position = this.transform.position;
 		leader.transform.rotation = this.transform.rotation;
-		//Add boid and seek to the  bombs(missiles)
 
 		fvx1ships.Add (leader);
 	}
