@@ -37,7 +37,7 @@ public class Control : MonoBehaviour
 		for (int i = 0; i < emspwn2.transform.childCount; i++) {
 			enemies2.Add (emspwn2.transform.GetChild (i).gameObject);
 		}
-		//set all enemies2 to seek spaceship plane
+		//set all enemies2 to seek spaceship 
 		for(int i = 0; i < enemies2.Count; i++)
 		{
 			Seek sk = enemies2[i].GetComponent<Seek> ();
@@ -51,7 +51,7 @@ public class Control : MonoBehaviour
 		camsBehavior[0].target = FVspawn[0];
 		camsBehavior[1].target = enemies[0];
 		camsBehavior [4].target = spaceship;
-//		camsBehavior[4].offset = camsBehavior[4].transform.position - spaceship.transform.position;
+		camsBehavior[4].offset = camsBehavior[4].transform.position - spaceship.transform.position;
 		camsBehavior [6].target = spaceship; 
 		camsBehavior [0].option = 2; //make camera 1 lookAt av8 plane
 		// Deactive some unneeded objcets 
@@ -98,8 +98,11 @@ public class Control : MonoBehaviour
 		StartCoroutine (Feed ());
 		yield break;
 	}
-	public IEnumerator StartFightScene (){
+	/*public IEnumerator StartFightScene (){
 		camCon.nextCam (); //goes to the next camera view
+		Fspwn.SetActive (true);
+		yield return new WaitForSeconds (10);
+		Fspwn.SetActive (false);
 		camCon.nextCam ();
 		yield return new WaitForSeconds (5);
 		warship.transform.GetChild(0).gameObject.SetActive(true);
@@ -107,7 +110,7 @@ public class Control : MonoBehaviour
 		yield return new WaitForSeconds (5);
 		StartCoroutine (Feed ());
 		yield break;
-	}
+	}*/
 
 	public IEnumerator Feed (){
 		camCon.nextCam (); //goes to the next camera view

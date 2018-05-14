@@ -31,7 +31,7 @@ public class FVX1Spawner : MonoBehaviour
 		fpath.path = GameObject.Find ("Spath").GetComponent<Path> ();
 		fpath.enabled = fpath.enabled;
 		ObstacleAvoidance obavd = leader.AddComponent<ObstacleAvoidance> ();
-		leader.GetComponent<Boid> ().maxSpeed = 30;
+//		leader.GetComponent<Boid> ().maxSpeed = 30;
 			
 	}
 	void CreateLeaders (Vector3 newpos)
