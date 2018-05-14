@@ -43,7 +43,7 @@ public class FVX1Spawner : MonoBehaviour
 		leader.transform.rotation = this.transform.rotation;
 
 		Arrive arive = leader.AddComponent<Arrive> ();
-		arive.targetPosition = leader.transform.position + leader.transform.forward * 100;
+		arive.targetPosition = leader.transform.position + leader.transform.forward * 400;
 		Seek seek = leader.AddComponent<Seek> ();
 		seek.enabled = !seek.enabled;
 		Path path = leader.AddComponent<Path> ();
@@ -80,17 +80,10 @@ public class FVX1Spawner : MonoBehaviour
 		fpath.enabled = fpath.enabled;
 		ObstacleAvoidance obavd = follower.AddComponent<ObstacleAvoidance> ();
 		obavd.enabled = !obavd.enabled;
-		//ObstacleAvoidance obavd = follower.AddComponent<ObstacleAvoidance> ();
 
 	}
 
-	Vector3 RandomTarget () 
-	{
-		return new Vector3 (warship.transform.position.x,
-			warship.transform.position.y,
-			Random.Range (-mshipsize.z / 2, mshipsize.z / 2) + warship.transform.position.z
-		);
-	}
+
 	// Update is called once per frame
 	void Update ()
 	{

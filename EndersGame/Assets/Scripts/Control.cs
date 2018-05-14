@@ -45,6 +45,7 @@ public class Control : MonoBehaviour
 			sk.enabled = enabled;
 			enemies2[i].GetComponent<FireBullets>().Startfiring();
 		}
+
 		for (int i = 0; i < camCon.cameras.Count; i++) {
 			camsBehavior.Add (camCon.cameras[i].GetComponent<CameraBehaviour>());
 		}
@@ -56,9 +57,10 @@ public class Control : MonoBehaviour
 		camsBehavior [0].option = 2; //make camera 1 lookAt av8 plane
 		// Deactive some unneeded objcets 
 //		warship.transform.GetChild(0).gameObject.SetActive(false);
-		emspwn2.SetActive(false);
+//		emspwn2.SetActive(false);
 		spaceship.SetActive (false);
 //		Debug.Log ("FVcount: " + FVspawn.Count);
+		StartCoroutine (Pathfollow());
 	}
 		
 
@@ -66,11 +68,10 @@ public class Control : MonoBehaviour
 	//Change enemies behavior to seek 
 	public IEnumerator Pathfollow ()
 	{
-		yield return new WaitForSeconds (5);
+		yield return new WaitForSeconds (15);
 		camCon.nextCam (); //goes to the next camera view
-		yield return new WaitForSeconds (10);
+		yield return new WaitForSeconds (5);
 		camsBehavior [1].option = 1;
-
 		//for loop to set FVspawn and enemies
 		for(int i = 0; i < FVspawn.Count; i++)
 		{
@@ -84,7 +85,8 @@ public class Control : MonoBehaviour
 			//enable follow path script and obstacle avoidance for fvx1 planes
 			FVspawn[i].GetComponent<FollowPath> ().enabled = enabled;
 			FVspawn[i].GetComponent<ObstacleAvoidance> ().enabled = enabled;
-			FVspawn[i].GetComponent<Boid> ().maxSpeed = 50;
+			FVspawn[i].GetComponent<Boid> ().maxSpeed = 25;
+			FVspawn[i].GetComponent<FireBullets>().Startfiring();
 			//make seek script of enemies to follow each one of fvx1 planes
 			Seek sk = enemies[i].GetComponent<Seek>();
 			sk.targetGameObject = FVspawn[i];
@@ -93,6 +95,7 @@ public class Control : MonoBehaviour
 		}
 		yield return new WaitForSeconds (3);
 		camCon.nextCam ();
+		emspwn2.SetActive (true); //show enemies spawner 2 
 		yield return new WaitForSeconds (5);
 		camCon.nextCam ();
 		StartCoroutine ( StartFightScene());
