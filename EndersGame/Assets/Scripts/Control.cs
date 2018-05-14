@@ -19,7 +19,7 @@ public class Control : MonoBehaviour
 
 	void Start ()
 	{
-		spaceship = GameObject.Find ("HeavyBattleship(Clone)");
+		spaceship = GameObject.Find ("HeavyBattleship 2(Clone)");
 		//clear all list
 		FVspawn.Clear ();
 		enemies.Clear ();
@@ -57,7 +57,7 @@ public class Control : MonoBehaviour
 		// Deactive some unneeded objcets 
 //		warship.transform.GetChild(0).gameObject.SetActive(false);
 //		emspwn2.SetActive(false);
-//		spaceship.SetActive (false);
+		spaceship.SetActive (false);
 //		Debug.Log ("FVcount: " + FVspawn.Count);
 	}
 		
