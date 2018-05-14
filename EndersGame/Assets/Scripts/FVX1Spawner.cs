@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FVX1Spawner : MonoBehaviour
 {
-	public float leaders = 1;
-	public float gapL = 100;
-	public float gap = 100;
+	public float leaders = 3;
+	public float gapL = 50;
+	public float gap = 50;
 	public float followers = 1;
 	public GameObject ssprefab;
 	public GameObject warship;
@@ -29,7 +29,7 @@ public class FVX1Spawner : MonoBehaviour
 	{
 		//Create Spaceship 
 		GameObject leader = GameObject.Instantiate<GameObject> (ssprefab);
-		leader.transform.position = this.transform.TransformPoint (new Vector3(0,-50,0));
+		leader.transform.position = this.transform.position;
 		leader.transform.rotation = this.transform.rotation;
 
 		Arrive arive = leader.AddComponent<Arrive> ();
@@ -41,7 +41,7 @@ public class FVX1Spawner : MonoBehaviour
 		FollowPath fpath = leader.AddComponent<FollowPath> ();
 		fpath.path = GameObject.Find("Spath").GetComponent<Path>();
 		fpath.enabled = fpath.enabled;
-		leader.GetComponent<Boid> ().maxSpeed = 30;
+		leader.GetComponent<Boid> ().maxSpeed = 50;
 
 		for (int i = 1; i <= followers; i++) {
 			Vector3 offset = new Vector3 (gap * i, 0, -gap * i);

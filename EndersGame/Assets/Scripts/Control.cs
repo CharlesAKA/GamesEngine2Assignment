@@ -56,7 +56,7 @@ public class Control : MonoBehaviour
 		camsBehavior [0].option = 2; //make camera 1 lookAt av8 plane
 		// Deactive some unneeded objcets 
 //		warship.transform.GetChild(0).gameObject.SetActive(false);
-		emspwn2.SetActive(false);
+//		emspwn2.SetActive(false);
 //		spaceship.SetActive (false);
 //		Debug.Log ("FVcount: " + FVspawn.Count);
 	}
@@ -103,7 +103,7 @@ public class Control : MonoBehaviour
 		camCon.nextCam ();
 		yield return new WaitForSeconds (5);
 		warship.transform.GetChild(0).gameObject.SetActive(true);
-		camsBehavior [3].option = 1; //make the camera lerp to the mothership final attack
+		camsBehavior [3].option = 1; //make the camera lerp to the warship
 		yield return new WaitForSeconds (5);
 		StartCoroutine (Feed ());
 		yield break;
