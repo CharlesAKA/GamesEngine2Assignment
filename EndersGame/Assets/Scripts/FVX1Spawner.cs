@@ -8,7 +8,8 @@ public class FVX1Spawner : MonoBehaviour
 	public float gapL = 50;
 	public float gap = 50;
 	public float followers = 1;
-	public GameObject ssprefab;
+	public GameObject sprefab;
+	public GameObject prefab;
 	public GameObject warship;
 	public GameObject expPrefab; 
 	private Vector3 mshipsize;
@@ -22,7 +23,7 @@ public class FVX1Spawner : MonoBehaviour
 			CreateLeaders (rndPos);
 		}
 			
-		GameObject leader = GameObject.Instantiate<GameObject> (ssprefab);
+		GameObject leader = GameObject.Instantiate<GameObject> (sprefab);
 		leader.transform.position = this.transform.TransformPoint (new Vector3(0,-50,0));
 		leader.transform.rotation = this.transform.rotation;
 
@@ -36,7 +37,7 @@ public class FVX1Spawner : MonoBehaviour
 	void CreateLeaders (Vector3 newpos)
 	{
 		//Create Spaceship 
-		GameObject leader = GameObject.Instantiate<GameObject> (ssprefab);
+		GameObject leader = GameObject.Instantiate<GameObject> (prefab);
 		leader.transform.parent = this.transform;
 		leader.transform.position = this.transform.TransformPoint (newpos);
 		leader.transform.rotation = this.transform.rotation;
@@ -63,7 +64,7 @@ public class FVX1Spawner : MonoBehaviour
 
 	void CreateFollower (Vector3 offset, Boid leader)
 	{
-		GameObject follower = GameObject.Instantiate<GameObject> (ssprefab);
+		GameObject follower = GameObject.Instantiate<GameObject> (prefab);
 		follower.transform.position = this.transform.TransformPoint (offset);
 		follower.transform.parent = this.transform;
 		follower.transform.rotation = this.transform.rotation;
@@ -79,6 +80,7 @@ public class FVX1Spawner : MonoBehaviour
 		fpath.enabled = fpath.enabled;
 		ObstacleAvoidance obavd = follower.AddComponent<ObstacleAvoidance> ();
 		obavd.enabled = !obavd.enabled;
+		//ObstacleAvoidance obavd = follower.AddComponent<ObstacleAvoidance> ();
 
 	}
 
