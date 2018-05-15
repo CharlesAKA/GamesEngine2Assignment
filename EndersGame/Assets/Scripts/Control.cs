@@ -75,13 +75,13 @@ public class Control : MonoBehaviour
 		//for loop to set FVspawn and enemies
 		for(int i = 0; i < FVspawn.Count; i++)
 		{
-			if (FVspawn[i].name != "follower") {
+			/*if (FVspawn[i].name != "follower") {
 				//disable previous behaviour of leader
-				FVspawn[i].GetComponent<Arrive> ().enabled = !enabled;
+				//FVspawn[i].GetComponent<Arrive> ().enabled = !enabled;
 			} else {
 				//disable previous behaviour of follower
 				FVspawn[i].GetComponent<OffsetPursue> ().enabled = !enabled;
-			}
+			}*/
 			//enable follow path script and obstacle avoidance for fvx1 planes
 			FVspawn[i].GetComponent<FollowPath> ().enabled = enabled;
 			FVspawn[i].GetComponent<ObstacleAvoidance> ().enabled = enabled;
@@ -96,7 +96,7 @@ public class Control : MonoBehaviour
 		yield return new WaitForSeconds (3);
 		camCon.nextCam ();
 		emspwn2.SetActive (true); //show enemies spawner 2 
-		yield return new WaitForSeconds (5);
+		yield return new WaitForSeconds (3);
 		camCon.nextCam ();
 		StartCoroutine ( StartFightScene());
 		yield break;
@@ -104,11 +104,10 @@ public class Control : MonoBehaviour
 	public IEnumerator StartFightScene (){
 		camCon.nextCam (); //goes to the next camera view
 		Fspwn.SetActive (true);
-		yield return new WaitForSeconds (10);
+		yield return new WaitForSeconds (5);
 		Fspwn.SetActive (false);
 		camCon.nextCam ();
 		yield return new WaitForSeconds (5);
-		warship.transform.GetChild(0).gameObject.SetActive(true);
 		camsBehavior [3].option = 1; //make the camera lerp to the warship
 		yield return new WaitForSeconds (5);
 		StartCoroutine (Feed ());
@@ -119,15 +118,16 @@ public class Control : MonoBehaviour
 		camCon.nextCam (); //goes to the next camera view
 		camsBehavior[4].option = 3;
 		spaceship.SetActive (true); //show  Spaceship plane
+		spaceship.GetComponent<Pathfollower> ().enabled = enabled;
 		emspwn2.SetActive (true); //show enemies spawner 2 
 		yield return new WaitForSeconds (5);
 		camCon.nextCam ();
-		yield return new WaitForSeconds (10);
-		camCon.nextCam ();
-		camsBehavior [6].option = 2; //make the camera look at k Spaceship
+		camsBehavior [6].option = 2; //make the camera look at Spaceship
 		yield return new WaitForSeconds (5);
-		//load end scene
-		SceneManager.LoadScene (1);
+		camCon.nextCam ();
+		camsBehavior [6].option = 2; //make the camera look at Spaceship
+		yield return new WaitForSeconds (5);
+		//camsBehavior[6].option = 1;
 		yield break;
 	}
 	// Update is called once per frame

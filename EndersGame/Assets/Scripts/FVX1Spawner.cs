@@ -12,27 +12,23 @@ public class FVX1Spawner : MonoBehaviour
 	public GameObject prefab;
 	public GameObject warship;
 	public GameObject expPrefab; 
-	private Vector3 mshipsize;
-
 	private void Awake ()
 	{
 		warship = GameObject.Find ("Warship");
-		mshipsize = warship.GetComponent<Collider> ().bounds.size;
 		for (int i = 1; i <= leaders; i++) {
 			Vector3 rndPos = new Vector3 (Random.Range ((-leaders * gapL), (leaders * gapL)), Random.Range ((-leaders * gapL), (leaders * gapL)), 0);
 			CreateLeaders (rndPos);
 		}
 			
 		GameObject leader = GameObject.Instantiate<GameObject> (sprefab);
-		leader.transform.position = this.transform.TransformPoint (new Vector3(0,-50,0));
+		leader.transform.position = this.transform.TransformPoint (new Vector3());
 		leader.transform.rotation = this.transform.rotation;
 
-		FollowPath fpath = leader.AddComponent<FollowPath> ();
-		fpath.path = GameObject.Find ("Spath").GetComponent<Path> ();
-		fpath.enabled = fpath.enabled;
+		/*FollowPath fpath = leader.AddComponent<FollowPath> ();
+		fpath.path = GameObject.Find ("Fpath").GetComponent<Path> ();
+		fpath.enabled = fpath.enabled;*/
+
 		ObstacleAvoidance obavd = leader.AddComponent<ObstacleAvoidance> ();
-//		leader.GetComponent<Boid> ().maxSpeed = 30;
-			
 	}
 	void CreateLeaders (Vector3 newpos)
 	{
@@ -43,7 +39,7 @@ public class FVX1Spawner : MonoBehaviour
 		leader.transform.rotation = this.transform.rotation;
 
 		Arrive arive = leader.AddComponent<Arrive> ();
-		arive.targetPosition = leader.transform.position + leader.transform.forward * 400;
+		arive.targetPosition = leader.transform.position + leader.transform.forward * 500;
 		Seek seek = leader.AddComponent<Seek> ();
 		seek.enabled = !seek.enabled;
 		Path path = leader.AddComponent<Path> ();
