@@ -55,9 +55,6 @@ public class Control : MonoBehaviour
 		camsBehavior[4].offset = camsBehavior[4].transform.position - spaceship.transform.position;
 		camsBehavior [6].target = spaceship; 
 		camsBehavior [0].option = 2; //make camera 1 lookAt av8 plane
-		// Deactive some unneeded objcets 
-//		warship.transform.GetChild(0).gameObject.SetActive(false);
-//		emspwn2.SetActive(false);
 		spaceship.SetActive (false);
 //		Debug.Log ("FVcount: " + FVspawn.Count);
 		StartCoroutine (Pathfollow());
@@ -75,14 +72,6 @@ public class Control : MonoBehaviour
 		//for loop to set FVspawn and enemies
 		for(int i = 0; i < FVspawn.Count; i++)
 		{
-			/*if (FVspawn[i].name != "follower") {
-				//disable previous behaviour of leader
-				//FVspawn[i].GetComponent<Arrive> ().enabled = !enabled;
-			} else {
-				//disable previous behaviour of follower
-				FVspawn[i].GetComponent<OffsetPursue> ().enabled = !enabled;
-			}*/
-			//enable follow path script and obstacle avoidance for fvx1 planes
 			FVspawn[i].GetComponent<FollowPath> ().enabled = enabled;
 			FVspawn[i].GetComponent<ObstacleAvoidance> ().enabled = enabled;
 			FVspawn[i].GetComponent<Boid> ().maxSpeed = 25;

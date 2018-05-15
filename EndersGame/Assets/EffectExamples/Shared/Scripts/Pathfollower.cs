@@ -16,7 +16,7 @@ public class Pathfollower : MonoBehaviour {
 			currentPoint++;
 		}
 		if (currentPoint >= Fpath.Length) {
-			currentPoint = 4;
+			currentPoint = 5;
 		}
 	}
 	void OnDrawGizmos (){

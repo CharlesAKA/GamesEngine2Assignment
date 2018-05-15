@@ -27,8 +27,6 @@ public class CameraBehaviour : MonoBehaviour
 
 	public void move ()
 	{
-		//Vector3 offpos =  target.transform.position + offset;
-		//Vector3 smoothmovement = Vector3.Lerp (transform.position, offpos,Time.deltaTime * smooth);
 		transform.position =  target.transform.position + offset;;
 	}
 }
